@@ -2,33 +2,29 @@
 <%- include('../partials/nav') %>
 
 <main>
-  <h1 class="title" ><%= title %></h1>
-  <form class="new-item" action="/eat/show" method="POST" autocomplete="off">
+  <h1 class="title"><%= title %></h1>
+  <form class="new-item" action="/poops/<%= poop._id %>?_method=PUT" method="POST" autocomplete="off">
     <label>Date: 
       <input type="text" name="date" placeholder="...">
     </label><br>
     <label>Type: 
       <select name="type">
-        <option value="Bottle" selected>Bottle</option>
-        <option value="Breast">Breast</option>
+        <option value="Wet" selected>Bottle</option>
+        <option value="Dirty">Breast</option>
       </select>
     </label><br>
     <label>Note: 
       <input type="text" name="note" placeholder="...">
     </label><br>
-    <label>Amount
-      <input type="text" name="size" placeholder="ounces">
-    </label><br>
     <label>Share: 
     <input type="checkbox" name="shared" checked
     />
   </label><br>
-    <button class="btn btn-primary btn-lg" type="submit">Create Object</button>
+    <button class="btn btn-primary btn-lg" type="submit">Save Object</button>
     <p>* Leave "Image URL" field blank if you want default picture to be applied</p>
     <p>* "Size" represents your Object's diameter in miles</p>
-    <p>*Check "Share" if you allow other people to add your Object to their twins</p>
+    <p>*Check "Share" if you allow other people to add your Object to their Galaxies</p>
   </form>
-
   </main>
 
 <%- include('../partials/footer') %>

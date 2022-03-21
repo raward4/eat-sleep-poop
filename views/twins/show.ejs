@@ -1,0 +1,87 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<main>
+  <h1><%= twin.name %> Twin!</h1>
+  <div>
+    <h4>Created by: <a class="profile-ref" href="/profiles/<%= twin.createdBy._id %>"><%= twin.createdBy.name %></a></h4>
+    <p>Description:<br> <%= twin.description %></p>
+  </div>
+    <% if (twin.eats.length) {%> 
+    <h2>Space Objects:</h2>
+    <% twin.eats.forEach(eat => { %>  
+      <div class="card text-center w-50">
+        <div class="card-body">
+          <% if (eat.imgUrl) { %>
+            <img
+              src="<%= eat.type %>" 
+              alt="<%= eat.amount %>"
+            />
+          <% } else { %>
+            <img
+              src="/images/eats/default<%= eat.type %>.jpeg" 
+              alt="placeholder"
+            >
+          <% } %>
+          <h2 class="card-title"><%= eat.name %></h2>
+          <p class="card-text">Type: <%= eat.type %></p>
+          <% if (eat.size) {%> 
+            <p class="card-text">Size: <%= eat.amount %> ounces</p>
+          <% } %>
+          <p class="card-text">Created by: <a class="prof-card" href="/profiles/<%= eat.createdBy._id %>"><%= eat.createdBy.name %></a></p>
+          <% if (user) {%> 
+            <% if (eat.shared) { %> 
+              <p>This Space Object is shared</p>
+              <% if (twins.length) { %> 
+                <% if (twins.length !== checkAll(twins, eat)) {%> 
+                  <form 
+                   action="/twins/<%= eat._id %>/eats"
+                  method="post"
+                  >
+                  <label> Choose your Twin:
+                  <select name="twinId">
+                  <% twins.forEach(twin => { %>
+                  <% if (!(twin.eats.includes(eat._id))) {%> 
+                  <option value="<%= twin._id %>"><%= twin.name %></option>
+                    <% } %>
+                  <% }) %>
+                  </select>
+                  </label>
+                  <button type="submit" class="btn btn-primary add">Add</button>
+                  </form>
+                  <% } else { %>
+                    <p>This Space Object is already in all your twins</p>
+                  <% } %>
+              <% } else { %>
+                <p>You don't have any twins yet <a href="/twins/new" class="btn btn-primary add">Add Twin</a></p>
+              <% } %>
+            <% } else {%>
+              <p>This Space Object is not shared</p>
+            <% } %> 
+          <% } %> 
+            <% if (user) { %> 
+              <% if (twin.createdBy._id.equals(user?.profile._id)) { %> 
+             <form action="/twins/<%= twin._id %>/eats/<%= eat._id %>?_method=DELETE" method="POST">
+              <button type="submit" class="btn btn-warning">Remove</button>
+              </form>
+              <% } %> 
+            <% }%>
+        </div>
+      </div>
+      <% }) %>
+      <% } else {%>
+        <h2>This Twin is empty</h2> 
+      <% } %>
+
+      <% function checkAll(twins, eat) { %>
+        <% let total = 0 %>
+        <%  twins.forEach(twin => {%>
+        <%  if (twin.eats.includes(eat._id)) {%>
+          <% total += 1 }%>
+          <% %> 
+        <% }) %>  
+        <% return total %>
+      <% } %>
+  </main>
+
+<%- include('../partials/footer') %>

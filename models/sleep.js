@@ -6,7 +6,7 @@ const Schema = mongoose.Schema
 const sleepSchema = new Schema({
   date: {type: Date},
   amount: {type: Number},
-  note: String,
+  note: {type: String},
   createdBy: {type: Schema.Types.ObjectId,ref: 'Profile'}
 }, {
   timestamps: true

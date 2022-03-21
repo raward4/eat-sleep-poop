@@ -6,7 +6,7 @@ const Schema = mongoose.Schema
 const poopSchema = new Schema({
   date: {type: Date},
   type: {type: String, enum: ['Wet', 'Dirty'], defult: 'Wet'},
-  note: String,
+  note: {type: String},
   createdBy: {type: Schema.Types.ObjectId,ref: 'Profile'}
 }, {
   timestamps: true

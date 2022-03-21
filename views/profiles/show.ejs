@@ -32,7 +32,7 @@
   <% if (profile.eats.length) { %>
     <h2> 
       <% if (isSelf) { %> 
-        You have <a class="profile-ref" href="/eats/myeats"><%= `${profile.eats.length} Space Objects` %></a>!
+        You have <a class="profile-ref" href="/eats/show"><%= `${profile.eats.length} Space Objects` %></a>!
         <% } else { %>
           <%= `${profile.name} has ${profile.eats.length} Space Objects!` %>
         <% } %>
