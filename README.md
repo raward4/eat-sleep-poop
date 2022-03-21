@@ -1,51 +1,40 @@
-# Awful Bandnames
 
-![Awful Bandnames homepage](https://i.imgur.com/1Ow9Hfi.png)
+# Create your twin!
 
-Awful Bandnames is a full CRUD application for entering every terrible bandname you've ever thought of. You can enter a name, bio, and add a rating to your submission and submissions by other users. On the profiles page, you can see each individuals contributions to the database (including the submission's rank in the full database). Have fun and share your awful bandnames!
+Question: how many twins are there in our Universe? The answers vary, but an acceptable range is between 100 billion and 200 billion twins. 
+Another question: do you think that's enough? Well, if you don't, you are in the right place! In "Create your twin!" you can build not 1, not 2, and not even 3, but as many twins as you want, brand new. And then fill them up with different Space Objects(things like eats, stars, etc.) also created by you or other people. So hop in, if you are ready. The Universe awaits!
 
-![Awful Bandnames wireframe](https://i.imgur.com/O8obY3S.png)
-Initial wireframe
+## Getting Started
 
----
+Try it now: <https://create-your-twin.herokuapp.com/>
 
-## ➡ [Use the app here](https://awful-bandnames.herokuapp.com/)
 
-## ➡ [Trello board can be found here](https://trello.com/b/Ljl8HeF3/unit-2-proposal)
+## Screenshots
 
----
+##### Initial wireframe
 
-## ⚙ Technologies Used 
+![Wireframe](./public/images/readme/wireframe.png)
 
-- CSS
-- JS / Embedded JS
-- MongoDB / Mongoose
-- Google Oauth
-- Passport
-- Express
-- Node
-- Bootstrap
-- Heroku
-- git
-  
----
+##### "Create your twin!" now
 
-## ⚙ Credits 
+!["Create your twin!" screenshot](./public/images/readme/screenshot2.png)
 
-- [Attributions](https://github.com/dcollis92/awful-bandnames/blob/main/attributions.md) listed here.
+##### Trello project link
 
----
+<https://trello.com/b/CFM4maQJ/demiurge-create-your-own-twin>
 
-## ⚙ Recent Changes 
+## Technologies used
 
-- Implimented a star rating feature via a Pure CSS Widget taken from Codepen. This star rating displays the current average rating and also allows the user to add a data entry via the widget on the bandnames/show view page.
-- Added a CSS animation transition to allow each page to load in a smooth, aesthetically pleasing manner.
++ HTML
++ JavaScript (EJS)
++ CSS, Bootstrap
++ Node.js with Express.js
++ MongoDB with Mongoose.js
 
-## ⚙ Ice Box 
+## Planned future enhancements
 
-- [x] Font design
-- [x] Halo around fonts
-- [ ] Light/Dark Mode
-- [ ] Fix Safari/mobile functionality
-- [ ] Accessibility features (keyboard input, colorblind settings)
-- [ ] Modernized UX applicable to competitive databases
++ Graphic enhancements
++ Improve responsive design
++ Enhance features of Space Objects and twins
++ Implement find, sort and filter functionalities
++ Add interesting astronomical facts

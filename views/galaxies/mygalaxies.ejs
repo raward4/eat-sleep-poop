@@ -1,0 +1,42 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+  <main>
+    <h1 class="title"><%= title %></h1>
+    <% if (!twins.length) { %> 
+      <h2>You don't have any twins yet!</h2>
+    <% } %>
+    <a href="/twins/new" class="btn btn-primary btn-lg add-btn">Create twin</a>
+    <% twins.forEach(twin => { %>  
+      <div class="card text-center w-50">
+        <div class="card-body">
+          <% if (twin.imgUrl) { %>
+            <img
+              src="<%= twin.imgUrl %>" 
+              alt="<%= twin.name %> twin image"
+            />
+          <% } else { %>
+            <img
+              src="/images/defaulttwin.jpeg" 
+              alt="<%= twin.name %> twin image"
+            >
+          <% } %>
+          <h2 class="card-title"><%= twin.name %></h2>
+          <p class="card-text">Created by: <a class="prof-card" href="/profiles/<%= twin.createdBy._id %>"><%= twin.createdBy.name %></a></p>
+          <% if (twin.description) { %> 
+            <p class="card-text"> Description: <br><%= twin.description %></p>
+          <% } %> 
+          <a href="/twins/<%= twin._id %>" class="btn btn-primary look">Look inside</a>
+          <div class="card-button-group">
+          <form action="/twins/<%= twin._id %>?_method=DELETE" method="POST">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+            <a href="/twins/<%= twin._id %>/edit" class="btn btn-success">Edit</a>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+      
+  </main>
+
+  <%- include('../partials/footer') %>

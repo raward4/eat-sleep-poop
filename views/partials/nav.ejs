@@ -1,16 +1,24 @@
+  <% if (!user) { %>
+    <link rel="stylesheet" href="/stylesheets/siwg.css">
+  <% } %>
 </head>
 <body>
   <nav>
-    <a href="/bandnames">List</a>
-    <a href="/profiles">Profiles</a>
-    <a href="/bandnames/new">Submit</a>
+    <a id="logo" href="/"><i class="fas fa-earth-africa"></i></a>
+    <a href="/twins">All twins</a>
+    <a href="/eats">All Space Objects</a>
     <% if (user) { %>
+      <a href="/twins/mytwins">My twins</a>
+      <a href="/eats/myeats">My Space Objects</a>
+      <a href="/profiles/<%= user.profile._id %>">My profile</a>
       <a href="/auth/logout">
         <button type="submit">Logout</button>
       </a>
     <% } else { %>
-      <a href="/auth/google">
-        <button type="submit">Login</button>
+      <a href="/auth/google" class="siwg-link">
+        <button type="submit" class="siwg">
+          <img id="siwg-image" alt="Sign in with Google" />
+        </button>
       </a>
     <% } %>
   </nav>
