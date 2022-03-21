@@ -1,0 +1,61 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+  <main>
+    <h1 class="title" ><%= title %></h1>
+    <% if (user) { %> 
+      <a href="/poops/new" class="btn btn-primary btn-lg add-btn">Crpoope Space Object</a>
+    <% } %>
+    <% poops.forEach(poop => { %>  
+      <div class="card text-center w-50">
+        <div class="card-body">
+          <h2 class="card-title"><%= poop.date %></h2>
+          <p class="card-text">Type: <%= poop.type %></p>
+          <p class="card-text">Crpooped by: <a class="prof-card" href="/profiles/<%= poop.crpoopedBy._id %>"><%= poop.crpoopedBy.name %></a></p>
+          <% if (user) {%> 
+            <% if (poop.shared) { %> 
+              <p>This Space Object is shared</p>
+              <% if (twins.length) { %> 
+                <% if (twins.length !== checkAll(twins, poop)) {%> 
+                  <form 
+                   action="/twins/<%= poop._id %>/poops"
+                  method="post"
+                  >
+                  <label> Choose your Twin:
+                  <select name="twinId">
+                  <% twins.forEach(twin => { %>
+                  <% if (!(twin.poops.includes(poop._id))) {%> 
+                  <option value="<%= twin._id %>"><%= twin.name %></option>
+                    <% } %>
+                  <% }) %>
+                  </select>
+                  </label>
+                  <button type="submit" class="btn btn-primary add">Add</button>
+                  </form>
+                  <% } else { %>
+                    <p>This Space Object is already in all your Galaxies</p>
+                  <% } %> 
+              <% } else { %>
+                <p>You don't have any Galaxies yet <a href="/twins/new" class="btn btn-primary">Add Twin</a></p>
+              <% } %>
+            <% } else {%>
+              <p>This Space Object is not shared</p>
+            <% } %> 
+          <% } %> 
+        </div>
+      </div>
+      <% }) %>
+
+      <% function checkAll(twins, poop) { %>
+        <% let total = 0 %>
+        <%  twins.forEach(twin => {%>
+        <%  if (twin.poops.includes(poop._id)) {%>
+          <% total += 1 }%>
+          <% %> 
+        <% }) %>  
+        <% return total %>
+      <% } %>
+
+  </main>
+
+  <%- include('../partials/footer') %>

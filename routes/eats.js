@@ -10,9 +10,9 @@ router.get('/new',isLoggedIn, eatsCtrl.new)
 
 router.get('/:id/edit',isLoggedIn, eatsCtrl.edit)
 
-router.get('/myeats',isLoggedIn, eatsCtrl.showMyeats)
+router.get('/show',isLoggedIn, eatsCtrl.showMyeats)
 
-router.post('/myeats',isLoggedIn, eatsCtrl.create)
+router.post('/show',isLoggedIn, eatsCtrl.create)
 
 router.put('/:id',isLoggedIn, eatsCtrl.update)
 

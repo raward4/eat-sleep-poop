@@ -21,6 +21,8 @@ import { router as authRouter } from './routes/auth.js'
 import { router as profilesRouter } from './routes/profiles.js'
 import { router as eatsRouter } from './routes/eats.js'
 import { router as twinsRouter } from './routes/twins.js'
+import { router as sleepsRouter } from './routes/sleeps.js'
+import { router as poopsRouter } from './routes/poops.js'
 
 // create the express app
 const app = express()
@@ -68,6 +70,8 @@ app.use('/auth', authRouter)
 app.use('/profiles', profilesRouter)
 app.use('/eats', eatsRouter)
 app.use('/twins', twinsRouter)
+app.use('/sleeps', sleepsRouter)
+app.use('/poops', poopsRouter)
 
 
 // catch 404 and forward to error handler

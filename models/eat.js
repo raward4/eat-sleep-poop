@@ -4,6 +4,7 @@ import mongoose from "mongoose"
 const Schema = mongoose.Schema
 
 const eatSchema = new Schema({
+  date: {type: Date},
   type: {type: String, enum: ['Bottle', 'Breast'], defult: 'Bottle'},
   amount: {type: Number},
   note: String,
