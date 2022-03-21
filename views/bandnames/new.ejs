@@ -1,0 +1,16 @@
+<%- include('../partials/html-head') %>
+<link rel="stylesheet" href="/stylesheets/bandnames/new.css" />
+<%- include('../partials/nav') %>
+
+<main id="bn-new">
+  <h1>Submit a Fake Bandname</h1>
+  <form id="new-form" action="/bandnames" method="POST">
+      <label for="name">Bandname</label>
+      <input type="text" name="name" id="name" />
+      <label for="bio">Bio (200 characters max):</label>
+      <textarea name="bio" id="bio-textarea"></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </main>
+
+<%- include('../partials/footer') %>
