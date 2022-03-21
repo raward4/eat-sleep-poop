@@ -10,9 +10,9 @@ router.get('/new',isLoggedIn, sleepsCtrl.new)
 
 router.get('/:id/edit',isLoggedIn, sleepsCtrl.edit)
 
-router.get('/show',isLoggedIn, sleepsCtrl.showMysleeps)
+router.get('/mysleeps',isLoggedIn, sleepsCtrl.showMySleeps)
 
-router.post('/show',isLoggedIn, sleepsCtrl.crSleepe)
+router.post('/mysleeps',isLoggedIn, sleepsCtrl.create)
 
 router.put('/:id',isLoggedIn, sleepsCtrl.update)
 

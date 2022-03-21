@@ -1,14 +1,17 @@
 import { Sleep } from "../models/Sleep.js"
 import { Profile } from '../models/profile.js'
-import { twin } from '../models/twin.js'
+import { Twin } from '../models/twin.js'
+import { Poop } from "../models/poop.js";
+import { Eat } from "../models/eat.js";
+
 
 
 function index(req, res) {
   Sleep.find({})
-  .populate('crSleepedBy')
+  .populate('createdBy')
   .then(sleeps => {
     if (req.user) {
-    twin.find({crSleepedBy: req.user.profile._id})
+    twin.find({createdBy: req.user.profile._id})
      .then(twins => {
       res.render('sleeps/index', {
         twins,
@@ -29,13 +32,13 @@ function index(req, res) {
 }
 
 
-function showMysleeps(req, res) {
-  Sleep.find({crSleepedBy: req.user.profile._id})
-    .populate('crSleepedBy')
+function showMySleeps(req, res) {
+  Sleep.find({createdBy: req.user.profile._id})
+    .populate('createdBy')
     .then(sleeps => {
-      twin.find({crSleepedBy: req.user.profile._id})
+      twin.find({createdBy: req.user.profile._id})
        .then(twins => {
-        res.render('sleeps/show', {
+        res.render('sleeps/mysleeps', {
           twins,
           sleeps,
           title: "Feedings"
@@ -54,16 +57,16 @@ function newSleep(req, res) {
 }
 
 
-  function crSleepe(req, res) {
-    req.body.crSleepedBy = req.user.profile._id
+  function create(req, res) {
+    req.body.createdBy = req.user.profile._id
     req.body.shared = !!req.body.shared
-    Sleep.crSleepe(req.body)
-      .then(Sleep => {
+    Sleep.create(req.body)
+      .then(sleep => {
         Profile.findById(req.user.profile._id)
           .then(profile => {
-            profile.sleeps.push(Sleep._id)
+            profile.sleeps.push(sleep._id)
             profile.save()
-            res.redirect('/sleeps/show')
+            res.redirect('/sleeps/mysleeps')
             })
           })
       .catch(err => {
@@ -75,23 +78,23 @@ function newSleep(req, res) {
 
 function deleteSleep(req, res) {
     Sleep.findByIdAndDelete(req.params.id)
-    .then(Sleep => {
+    .then(sleep => {
       Profile.findById(req.user.profile._id)
       .then(profile => {
         profile.sleeps.pop(Sleep._id)
         profile.save()
-        res.redirect('/sleeps/show')
+        res.redirect('/sleeps/mysleeps')
         })
       })
     .catch(err => {
       console.log(err)
-      res.redirect('/sleeps/show')
+      res.redirect('/sleeps/mysleeps')
       })
     }
 
 function edit(req, res) {
   Sleep.findById(req.params.id)
-    .then(Sleep => {
+    .then(sleep => {
       res.render('sleeps/edit', {
         Sleep,
         title: 'Edit Nap'
@@ -102,8 +105,8 @@ function edit(req, res) {
 function update(req, res) {
   req.body.shared = !!req.body.shared
   Sleep.findByIdAndUpdate(req.params.id, req.body)
-    .then(Sleep => {
-      res.redirect('/sleeps/show')
+    .then(sleep => {
+      res.redirect('/sleeps/mysleeps')
     })
     .catch(err => {
       console.log("the error:", err)
@@ -114,8 +117,8 @@ function update(req, res) {
 export {
   index,
   newSleep as new,
-  crSleepe,
-  showMysleeps,
+  create,
+  showMySleeps,
   deleteSleep as delete,
   edit,
   update

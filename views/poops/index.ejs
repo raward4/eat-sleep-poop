@@ -4,30 +4,27 @@
   <main>
     <h1 class="title" ><%= title %></h1>
     <% if (user) { %> 
-      <a href="/eats/new" class="btn btn-primary btn-lg add-btn">Create Space Object</a>
+      <a href="/poops/new" class="btn btn-primary btn-lg add-btn">Crpoope Space Object</a>
     <% } %>
-    <% eats.forEach(eat => { %>  
+    <% poops.forEach(poop => { %>  
       <div class="card text-center w-50">
         <div class="card-body">
-          <h2 class="card-title"><%= eat.date %></h2>
-          <p class="card-text">Type: <%= eat.type %></p>
-          <% if (eat.amount) {%> 
-            <p class="card-text">Amount: <%= eat.amount %> ounces</p>
-          <% } %>
-          <p class="card-text">Created by: <a class="prof-card" href="/profiles/<%= eat.createdBy._id %>"><%= eat.createdBy.name %></a></p>
+          <h2 class="card-title"><%= poop.date %></h2>
+          <p class="card-text">Type: <%= poop.type %></p>
+          <p class="card-text">Crpooped by: <a class="prof-card" href="/profiles/<%= createdBy._id %>"><%= createdBy.name %></a></p>
           <% if (user) {%> 
-            <% if (eat.shared) { %> 
+            <% if (poop.shared) { %> 
               <p>This Space Object is shared</p>
               <% if (twins.length) { %> 
-                <% if (twins.length !== checkAll(twins, eat)) {%> 
+                <% if (twins.length !== checkAll(twins, poop)) {%> 
                   <form 
-                   action="/twins/<%= eat._id %>/eats"
+                   action="/twins/<%= poop._id %>/poops"
                   method="post"
                   >
                   <label> Choose your Twin:
                   <select name="twinId">
                   <% twins.forEach(twin => { %>
-                  <% if (!(twin.eats.includes(eat._id))) {%> 
+                  <% if (!(twin.poops.includes(poop._id))) {%> 
                   <option value="<%= twin._id %>"><%= twin.name %></option>
                     <% } %>
                   <% }) %>
@@ -39,7 +36,7 @@
                     <p>This Space Object is already in all your Galaxies</p>
                   <% } %> 
               <% } else { %>
-                <p>You don't have any Galaxies yet <a href="/twins/new" class="btn btn-primary">Add Twin</a></p>
+                <p>You don't have any Galaxies yet <a href="twins/new" class="btn btn-primary">Add Twin</a></p>
               <% } %>
             <% } else {%>
               <p>This Space Object is not shared</p>
@@ -49,10 +46,10 @@
       </div>
       <% }) %>
 
-      <% function checkAll(twins, eat) { %>
+      <% function checkAll(twins, poop) { %>
         <% let total = 0 %>
         <%  twins.forEach(twin => {%>
-        <%  if (twin.eats.includes(eat._id)) {%>
+        <%  if (twin.poops.includes(poop._id)) {%>
           <% total += 1 }%>
           <% %> 
         <% }) %>  

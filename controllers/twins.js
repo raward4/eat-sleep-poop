@@ -1,5 +1,7 @@
-import { Twin } from "../models/twin.js";
-import { Profile } from "../models/profile.js";
+import { Sleep } from "../models/Sleep.js"
+import { Profile } from '../models/profile.js'
+import { Twin } from '../models/twin.js'
+import { Poop } from "../models/poop.js";
 import { Eat } from "../models/eat.js";
 
 
@@ -22,13 +24,13 @@ function newTwin(req, res) {
   res.render('twins/new', {title: 'New Twin'})
 }
 
-function showMytwins(req, res) {
+function showMyTwins(req, res) {
   Twin.find({createdBy: req.user.profile._id})
     .populate('createdBy')
     .then(twins => {
-      res.render('twins/show', {
+      res.render('twins/mytwins', {
         twins,
-        title: 'My twins'
+        title: 'My Twins'
       })
     })
     .catch(err => {
@@ -41,51 +43,51 @@ function show(req, res) {
   Twin.findById(req.params.id)
     .populate('createdBy')
     .populate({path: 'eats', populate: {path: 'createdBy'}})  
-    .then(Twin => {
+    .then(twin => {
       if(req.user) {
       Twin.find({createdBy: req.user.profile._id})
         .then(twins => {
             res.render('twins/show', {
               twins,
-              Twin,
+              twin,
               title: "My Twin"
             })
           })
         } else {
-            res.render('twins/index', {
-            Twin,
+            res.render('twins/show', {
+            twin,
             title: "My Twin"
             })
          }
       })
     .catch(err => {
       console.log(err)
-      res.redirect('/twins/show')
+      res.redirect('twins/mytwins')
       })
 }
 
 function create(req, res) {
   req.body.createdBy = req.user.profile._id
   Twin.create(req.body)
-    .then(Twin => {
+    .then(twin => {
       Profile.findById(req.user.profile._id)
         .then(profile => {
-          profile.twins.push(Twin._id)
+          profile.twins.push(twin._id)
           profile.save()
-          res.redirect('/twins/show')
+          res.redirect('twins/mytwins')
           })
         })
     .catch(err => {
     console.log(err)
-    res.redirect('/twins/new')
+    res.redirect('twins/new')
     })
 }
 
 function edit(req, res) {
   Twin.findById(req.params.id)
-    .then(Twin => {
+    .then(twin => {
       res.render('twins/edit', {
-        Twin,
+        twin,
         title: 'Edit Twin'
       })
     })
@@ -93,37 +95,37 @@ function edit(req, res) {
 
 function update(req, res) {
   Twin.findByIdAndUpdate(req.params.id, req.body)
-    .then(Twin => {
-      res.redirect('/twins/mytwins')
+    .then(twin => {
+      res.redirect('twins/mytwins')
     })
     .catch(err => {
       console.log("the error:", err)
-      res.redirect(`/twins/${req.params.id}/edit`)
+      res.redirect(`twins/${req.params.id}/edit`)
     })
 }
 
 function deleteTwin(req, res) {
   Twin.findByIdAndDelete(req.params.id)
-  .then(Twin => {
+  .then(twin => {
     Profile.findById(req.user.profile._id)
     .then(profile => {
-      profile.twins.pop(Twin._id)
+      profile.twins.pop(twin._id)
       profile.save()
-      res.redirect('/twins/mytwins')
+      res.redirect('twins/mytwins')
       })
     })
   .catch(err => {
     console.log(err)
-    res.redirect('/twins/mytwins')
+    res.redirect('twins/mytwins')
     })
   }
 
   function addEat(req, res) {
-    Twin.findById(req.body.TwinId) 
-      .then(Twin => {
-      Twin.eats.push(req.params.id)
-      Twin.save()
-      res.redirect(`/twins/${req.body.TwinId}`)
+    Twin.findById(req.body.twinId) 
+      .then(twin => {
+      twin.eats.push(req.params.id)
+      twin.save()
+      res.redirect(`twins/${req.body.twinId}`)
       })
       .catch(err => {
         console.log(err)
@@ -132,22 +134,22 @@ function deleteTwin(req, res) {
    }
 
    function removeEat(req, res) {
-    Twin.findById(req.params.TwinId)
-      .then(Twin => {
-        Twin.eats.remove({_id: req.params.EatId})
-        Twin.save()
-        res.redirect(`/twins/${req.params.TwinId}`)
+    Twin.findById(req.params.twinId)
+      .then(twin => {
+        twin.eats.remove({_id: req.params.eatId})
+        twin.save()
+        res.redirect(`twins/${req.params.twinId}`)
       })
       .catch(err => {
         console.log(err)
-        res.redirect(`/twins/${req.params.TwinId}`)
+        res.redirect(`twins/${req.params.twinId}`)
       })
    } 
 
 export {
   index,
   newTwin as new,
-  showMytwins,
+  showMyTwins,
   show,
   create,
   deleteTwin as delete,

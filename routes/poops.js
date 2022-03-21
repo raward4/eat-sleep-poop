@@ -10,9 +10,9 @@ router.get('/new',isLoggedIn, poopsCtrl.new)
 
 router.get('/:id/edit',isLoggedIn, poopsCtrl.edit)
 
-router.get('/show',isLoggedIn, poopsCtrl.showMypoops)
+router.get('/mypoops',isLoggedIn, poopsCtrl.showMyPoops)
 
-router.post('/show',isLoggedIn, poopsCtrl.crpoope)
+router.post('/mypoops',isLoggedIn, poopsCtrl.create)
 
 router.put('/:id',isLoggedIn, poopsCtrl.update)
 

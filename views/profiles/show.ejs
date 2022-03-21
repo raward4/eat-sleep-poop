@@ -19,7 +19,7 @@
   <% if (profile.twins.length) { %>
       <h2> 
         <% if (isSelf) { %> 
-        You have <a class="profile-ref" href="/twins/mytwins"><%= `${profile.twins.length} twins` %></a>!
+        You have <a class="profile-ref" href="twins/mytwins"><%= `${profile.twins.length} twins` %></a>!
         <% } else { %>
           <%= `${profile.name} has ${profile.twins.length} twins!` %>
         <% } %>
@@ -29,10 +29,10 @@
       <%= isSelf ? "You don't " : `${profile.name} doesn't ` %>have any twins!
     </h2>
   <% } %>
-  <% if (profile.eats.length) { %>
+<% if (profile.eats.length) { %>
     <h2> 
       <% if (isSelf) { %> 
-        You have <a class="profile-ref" href="/eats/show"><%= `${profile.eats.length} Space Objects` %></a>!
+        You have <a class="profile-ref" href="/eats/myeats"><%= `${profile.eats.length} Space Objects` %></a>!
         <% } else { %>
           <%= `${profile.name} has ${profile.eats.length} Space Objects!` %>
         <% } %>
@@ -44,7 +44,7 @@
 <% } %>
 <div class="main-button-container">
   <a href="/twins/new" class="btn btn-primary btn-lg">Create twin</a>
-  <a href="/eats/new" class="btn btn-primary btn-lg">Create Space Object</a>
+  <a href="/eats/new" class="btn btn-primary btn-lg">Add feeding</a>
 </div>
 </main>
 

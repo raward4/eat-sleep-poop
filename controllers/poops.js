@@ -1,14 +1,15 @@
-import { Poop } from "../models/poop.js"
+import { Sleep } from "../models/Sleep.js"
 import { Profile } from '../models/profile.js'
-import { twin } from '../models/twin.js'
-
+import { Twin } from '../models/twin.js'
+import { Poop } from "../models/poop.js"
+import { Eat } from "../models/eat.js"
 
 function index(req, res) {
   Poop.find({})
-  .populate('crpoopedBy')
+  .populate('createdBy')
   .then(poops => {
     if (req.user) {
-    twin.find({crpoopedBy: req.user.profile._id})
+    twin.find({createdBy: req.user.profile._id})
      .then(twins => {
       res.render('poops/index', {
         twins,
@@ -29,13 +30,13 @@ function index(req, res) {
 }
 
 
-function showMypoops(req, res) {
-  Poop.find({crpoopedBy: req.user.profile._id})
-    .populate('crpoopedBy')
+function showMyPoops(req, res) {
+  Poop.find({createdBy: req.user.profile._id})
+    .populate('createdBy')
     .then(poops => {
-      twin.find({crpoopedBy: req.user.profile._id})
+      twin.find({createdBy: req.user.profile._id})
        .then(twins => {
-        res.render('poops/show', {
+        res.render('poops/mypoops', {
           twins,
           poops,
           title: "Feedings"
@@ -54,16 +55,16 @@ function newpoop(req, res) {
 }
 
 
-  function crpoope(req, res) {
-    req.body.crpoopedBy = req.user.profile._id
+  function create(req, res) {
+    req.body.createdBy = req.user.profile._id
     req.body.shared = !!req.body.shared
-    Poop.crpoope(req.body)
+    Poop.create(req.body)
       .then(poop => {
         Profile.findById(req.user.profile._id)
           .then(profile => {
             profile.poops.push(poop._id)
             profile.save()
-            res.redirect('/poops/show')
+            res.redirect('/poops/mypoops')
             })
           })
       .catch(err => {
@@ -80,12 +81,12 @@ function deletepoop(req, res) {
       .then(profile => {
         profile.poops.pop(poop._id)
         profile.save()
-        res.redirect('/poops/show')
+        res.redirect('/poops/mypoops')
         })
       })
     .catch(err => {
       console.log(err)
-      res.redirect('/poops/show')
+      res.redirect('/poops/mypoops')
       })
     }
 
@@ -103,7 +104,7 @@ function update(req, res) {
   req.body.shared = !!req.body.shared
   Poop.findByIdAndUpdate(req.params.id, req.body)
     .then(poop => {
-      res.redirect('/poops/show')
+      res.redirect('/poops/mypoops')
     })
     .catch(err => {
       console.log("the error:", err)
@@ -114,8 +115,8 @@ function update(req, res) {
 export {
   index,
   newpoop as new,
-  crpoope,
-  showMypoops,
+  create,
+  showMyPoops,
   deletepoop as delete,
   edit,
   update

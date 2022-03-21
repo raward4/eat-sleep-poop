@@ -12,7 +12,7 @@ const commentsSchema = new Schema({
 })
 
 const twinSchema = new Schema({
-  name: {type: String, required: true},
+  name: {type: String},
   imgUrl: {type: String},
   eats: [{type: Schema.Types.ObjectId, ref: 'Eat'}],
   sleeps:[{type: Schema.Types.ObjectId, ref: 'Sleep'}],

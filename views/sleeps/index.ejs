@@ -13,7 +13,7 @@
           <% if (sleep.amount) {%> 
             <p class="card-text">Amount: <%= sleep.amount %> ounces</p>
           <% } %>
-          <p class="card-text">Crsleeped by: <a class="prof-card" href="/profiles/<%= sleep.crsleepedBy._id %>"><%= sleep.crsleepedBy.name %></a></p>
+          <p class="card-text">Crsleeped by: <a class="prof-card" href="/profiles/<%= sleep.createdBy._id %>"><%= sleep.createdBy.name %></a></p>
           <% if (user) {%> 
             <% if (sleep.shared) { %> 
               <p>This Space Object is shared</p>

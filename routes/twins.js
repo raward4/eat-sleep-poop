@@ -7,7 +7,7 @@ const router = Router()
 
 router.get('/', twinsCtrl.index)
 
-router.get('/mytwins',isLoggedIn, twinsCtrl.showMytwins)
+router.get('/mytwins',isLoggedIn, twinsCtrl.showMyTwins)
 
 router.get('/new', isLoggedIn,  twinsCtrl.new)
 
