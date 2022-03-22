@@ -4,7 +4,7 @@
 <main>
   <h1><%= twin.name %> Twin!</h1>
   <div>
-    <h4>Created by: <a class="profile-ref" href="/profiles/<%= twin.createdBy._id %>"><%= twins.createdBy.name %></a></h4>
+    <h4>Created by: <a class="profile-ref" href="/profiles/<%= twin.createdBy._id %>"><%= twin.createdBy.name %></a></h4>
   </div>
     <% if (twin.eats.length) {%> 
     <h2>Space Objects:</h2>

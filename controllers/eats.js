@@ -34,7 +34,7 @@ function showMyEats(req, res) {
   Eat.find({createdBy: req.user.profile._id})
     .populate('createdBy')
     .then(eats => {
-      twin.find({createdBy: req.user.profile._id})
+      Twin.find({createdBy: req.user.profile._id})
        .then(twins => {
         res.render('eats/myeats', {
           twins,
@@ -62,7 +62,7 @@ function newEat(req, res) {
       .then(eat => {
         Profile.findById(req.user.profile._id)
           .then(profile => {
-            profile.eats.push(Eat._id)
+            profile.eats.push(eat._id)
             profile.save()
             res.redirect('/eats/myeats')
             })
@@ -94,7 +94,7 @@ function edit(req, res) {
   Eat.findById(req.params.id)
     .then(eat => {
       res.render('eats/edit', {
-        Eat,
+        eat,
         title: 'Edit Feeding'
       })
     })

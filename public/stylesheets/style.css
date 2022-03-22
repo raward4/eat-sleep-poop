@@ -28,7 +28,7 @@ body {
     "nav"
     "main";
   font-size: 1.8rem;
-  background: url('/images/background4.jpg') darkblue;
+  background: url('/images/blueb.jpeg') rgb(220, 220, 233);
   background-size: cover;
 }
 
@@ -216,4 +216,11 @@ h4 {
 
 #twin-description {
   width: 65%;
+}
+
+.nv {
+  max-width: 3rem;
+  border: solid black 0.25rem;
+  border-radius: 50%;
+  background-color: white;
 }

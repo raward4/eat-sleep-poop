@@ -23,7 +23,7 @@ router.put('/:id',isLoggedIn, twinsCtrl.update)
 
 router.delete('/:id',isLoggedIn, twinsCtrl.delete)
 
-router.delete('/:twinId/eats/:EatId',isLoggedIn, twinsCtrl.removeEat)
+router.delete('/:twinId/eats/:eatId',isLoggedIn, twinsCtrl.removeEat)
 
 export {
   router
