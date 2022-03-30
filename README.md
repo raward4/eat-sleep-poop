@@ -1,27 +1,22 @@
 
-# Create your twin!
+# Eat | Sleep | Poop
 
-Question: how many twins are there in our Universe? The answers vary, but an acceptable range is between 100 billion and 200 billion twins. 
-Another question: do you think that's enough? Well, if you don't, you are in the right place! In "Create your twin!" you can build not 1, not 2, and not even 3, but as many twins as you want, brand new. And then fill them up with different Space Objects(things like eats, stars, etc.) also created by you or other people. So hop in, if you are ready. The Universe awaits!
+The daunting task of caring for a newborn really comes down to tracking 3 things: feeds, naps, and bowel movements. This app make logging those events ridiculously simple. Be sure your baby is having the proper amount of nutrition, rest, and bowel movements daily using this app! 
 
 ## Getting Started
 
-Try it now: <https://create-your-twin.herokuapp.com/>
+Try it now: <https://eat-sleep-poop.herokuapp.com/>
 
 
 ## Screenshots
 
-##### Initial wireframe
-
-![Wireframe](./public/images/readme/wireframe.png)
-
 ##### "Create your twin!" now
 
-!["Create your twin!" screenshot](./public/images/readme/screenshot2.png)
+!["Create your twin!" screenshot](.public/images/shot3.png)
 
-##### Trello project link
+!["Create your twin!" screenshot](.public/images/shot2.png)
 
-<https://trello.com/b/CFM4maQJ/demiurge-create-your-own-twin>
+!["Create your twin!" screenshot](.public/images/shot1.png)
 
 ## Technologies used
 
