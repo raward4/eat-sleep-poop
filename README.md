@@ -12,11 +12,11 @@ Try it now: <https://eat-sleep-poop.herokuapp.com/>
 
 ##### "Create your twin!" now
 
-!["Create your twin!" screenshot](.public/images/shot3.png)
+![1](public/images/shot3.png)
 
-!["Create your twin!" screenshot](.public/images/shot2.png)
+![2](public/images/shot2.png)
 
-!["Create your twin!" screenshot](.public/images/shot1.png)
+![3](public/images/shot1.png)
 
 ## Technologies used
 
