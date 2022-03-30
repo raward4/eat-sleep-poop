@@ -2,7 +2,7 @@
 <%- include('../partials/nav') %>
 
 <main>
-  <h1 class="title" ><%= title %></h1>
+  <h1 class="title" >Log Nap</h1>
   <form class="new-item" action="/sleeps/mysleeps" method="POST" autocomplete="off">
     <label>Date: 
       <input type="text" name="date" placeholder="...">
@@ -17,17 +17,9 @@
     <input type="checkbox" name="shared" checked
     />
   </label><br>
-    <button class="btn btn-primary btn-lg" type="submit">Crsleepe Object</button>
-    <p>* Leave "Image URL" field blank if you want default picture to be applied</p>
-    <p>* "Size" represents your Object's diameter in miles</p>
-    <p>*Check "Share" if you allow other people to add your Object to their twins</p>
+    <button class="btn btn-primary btn-lg" type="submit">Submit</button>
   </form>
 
   </main>
 
 <%- include('../partials/footer') %>
-
-
-date: {type: Date},
-amount: {type: Number},
-note: String,
