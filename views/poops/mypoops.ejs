@@ -4,24 +4,24 @@
   <main>
     <h1 class="title" ><%= title %></h1>
     <% if (user) { %> 
-      <a href="/poops/new" class="btn btn-primary btn-lg add-btn">Crpoope Space Object</a>
+      <a href="/poops/new" class="btn btn-primary btn-lg add-btn">log diaper</a>
     <% } %>
     <% poops.forEach(poop => { %>  
       <div class="card text-center w-50">
         <div class="card-body">
           <h2 class="card-title"><%= poop.date %></h2>
           <p class="card-text">Type: <%= poop.type %></p>
-          <p class="card-text">Crpooped by: <a class="prof-card" href="/profiles/<%= createdBy._id %>"><%= createdBy.name %></a></p>
+          <p class="card-text">Diaper logged by: <a class="prof-card" href="/profiles/<%= createdBy._id %>"><%= createdBy.name %></a></p>
           <% if (user) {%> 
             <% if (poop.shared) { %> 
-              <p>This Space Object is shared</p>
+              <p>This Object is shared</p>
               <% if (twins.length) { %> 
                 <% if (twins.length !== checkAll(twins, poop)) {%> 
                   <form 
                    action="/twins/<%= poop._id %>/poops"
                   method="post"
                   >
-                  <label> Choose your Twin:
+                  <label> Choose your Baby:
                   <select name="twinId">
                   <% twins.forEach(twin => { %>
                   <% if (!(twin.poops.includes(poop._id))) {%> 
@@ -33,13 +33,13 @@
                   <button type="submit" class="btn btn-primary add">Add</button>
                   </form>
                   <% } else { %>
-                    <p>This Space Object is already in all your Galaxies</p>
+                    <p>already logged under baby</p>
                   <% } %> 
               <% } else { %>
-                <p>You don't have any Galaxies yet <a href="twins/new" class="btn btn-primary">Add Twin</a></p>
+                <p>You don't have any babies yet <a href="twins/new" class="btn btn-primary">Add baby</a></p>
               <% } %>
             <% } else {%>
-              <p>This Space Object is not shared</p>
+              <p>This Object is not shared</p>
             <% } %> 
           <% } %> 
         </div>

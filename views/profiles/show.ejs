@@ -26,7 +26,7 @@
       </h2>
   <% } else { %>
     <h2>
-      <%= isSelf ? "You don't " : `${profile.name} doesn't ` %>have any twins!
+      <%= isSelf ? "You don't " : `${profile.name} doesn't ` %>have any babies!
     </h2>
   <% } %>
 <% if (profile.eats.length) { %>
@@ -39,12 +39,14 @@
     </h2>
 <% } else { %>
   <h2>
-    <%= isSelf ? "You don't " : `${profile.name} doesn't ` %>have any Space Objects!
+    <%= isSelf ? "You don't " : `${profile.name} doesn't ` %>have any events!
   </h2>
 <% } %>
 <div class="main-button-container">
-  <a href="/twins/new" class="btn btn-primary btn-lg">Create twin</a>
+  <a href="/twins/new" class="btn btn-primary btn-lg">Add Baby</a>
   <a href="/eats/new" class="btn btn-primary btn-lg">Add feeding</a>
+  <a href="/sleeps/new" class="btn btn-primary btn-lg">Add nap</a>
+  <a href="/poops/new" class="btn btn-primary btn-lg">Add diaper</a>
 </div>
 </main>
 
