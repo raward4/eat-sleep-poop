@@ -1,8 +1,8 @@
 import { Sleep } from "../models/sleep.js"
 import { Profile } from '../models/profile.js'
 import { Baby } from '../models/baby.js'
-import { Poop } from "../models/poop.js";
-import { Eat } from "../models/eat.js";
+import { Poop } from "../models/events/poop.js";
+import { Eat } from "../models/events/eat.js";
 
 
 function show(req, res) {

@@ -1,13 +1,11 @@
 import { Profile } from '../models/profile.js'
-import { Baby } from '../models/baby.js'
+import { Baby, Event } from '../models/baby.js'
 
-
-
-function index(req, res) {
+function indexBabies(req, res) {
   Baby.find({})
   .populate('createdBy')
   .then(babies => {
-    res.render('babies/index', {
+    res.render('/babies', {
       babies,
       title: "All babies"
     })
@@ -22,13 +20,13 @@ function newBaby(req, res) {
   res.render('babies/new', {title: 'New Baby'})
 }
 
-function showMyBabies(req, res) {
+function showBaby(req, res) {
   Baby.find({createdBy: req.user.profile._id})
     .populate('createdBy')
     .then(babies => {
-      res.render('babies/babies', {
+      res.render('babies/:id', {
         babies,
-        title: 'My Babies'
+        title: 'Baby Details'
       })
     })
     .catch(err => {
@@ -37,30 +35,30 @@ function showMyBabies(req, res) {
     })
 }
 
-function show(req, res) {
+function showBabyDetails(req, res) {
   Baby.findById(req.params.id)
     .populate('createdBy')
-    .populate({path: 'eats', populate: {path: 'createdBy'}})  
+    .populate({path: 'events', populate: {path: 'createdBy'}})  
     .then(baby => {
       if(req.user) {
       Baby.find({createdBy: req.user.profile._id})
-        .then(babies => {
-            res.render('babies/show', {
+        .then(babies => {3
+            res.render('babies/:id', {
               babies,
               baby,
               title: "My Baby"
             })
           })
         } else {
-            res.render('babies/show', {
+            res.render('babies/:id', {
             baby,
-            title: "My Baby"
+            title: "Baby Details"
             })
          }
       })
     .catch(err => {
       console.log(err)
-      res.redirect('babies/babies')
+      res.redirect('babies/')
       })
 }
 
@@ -72,7 +70,7 @@ function create(req, res) {
         .then(profile => {
           profile.babies.push(baby._id)
           profile.save()
-          res.redirect('babies/babies')
+          res.redirect('/babies')
           })
         })
     .catch(err => {
@@ -94,7 +92,7 @@ function edit(req, res) {
 function update(req, res) {
   Baby.findByIdAndUpdate(req.params.id, req.body)
     .then(baby => {
-      res.redirect('babies/babies')
+      res.redirect('babies/:id')
     })
     .catch(err => {
       console.log("the error:", err)
@@ -109,32 +107,32 @@ function deleteBaby(req, res) {
     .then(profile => {
       profile.babies.pop(baby._id)
       profile.save()
-      res.redirect('babies/babies')
+      res.redirect('babies/:id')
       })
     })
   .catch(err => {
     console.log(err)
-    res.redirect('babies/babies')
+    res.redirect('babies/')
     })
   }
 
-  function addEat(req, res) {
+  function createEvent(req, res) {
     Baby.findById(req.body.babyId) 
       .then(baby => {
-      baby.eats.push(req.params.id)
+      baby.events.push(req.params.id)
       baby.save()
       res.redirect(`babies/${req.body.babyId}`)
       })
       .catch(err => {
         console.log(err)
-        res.redirect('/eats')
+        res.redirect('/babies/:id/event')
         })
    }
 
-   function removeEat(req, res) {
+   function deleteEvent(req, res) {
     Baby.findById(req.params.babyId)
       .then(baby => {
-        baby.eats.remove({_id: req.params.eatId})
+        baby.event.remove({_id: req.params.eatId})
         baby.save()
         res.redirect(`babies/${req.params.babyId}`)
       })
@@ -145,16 +143,16 @@ function deleteBaby(req, res) {
    } 
 
 export {
-  index,
+  indexBabies,
   newBaby as new,
-  showMyBabies,
-  show,
-  create,
-  deleteBaby as delete,
-  edit,
-  update,
-  addEat,
-  removeEat
+  showBaby,
+  showBabyDetails,
+  createBaby,
+  deleteBaby,
+  editBaby,
+  updateBaby,
+  createEvent,
+  deleteEvent
 }
 
 
