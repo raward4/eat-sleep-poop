@@ -15,17 +15,17 @@
           <% if (user) {%> 
             <% if (poop.shared) { %> 
               <p>This Object is shared</p>
-              <% if (twins.length) { %> 
-                <% if (twins.length !== checkAll(twins, poop)) {%> 
+              <% if (babies.length) { %> 
+                <% if (babies.length !== checkAll(babies, poop)) {%> 
                   <form 
-                   action="/twins/<%= poop._id %>/poops"
+                   action="/babies/<%= poop._id %>/poops"
                   method="post"
                   >
                   <label> Choose your baby:
-                  <select name="twinId">
-                  <% twins.forEach(twin => { %>
-                  <% if (!(twin.poops.includes(poop._id))) {%> 
-                  <option value="<%= twin._id %>"><%= twin.name %></option>
+                  <select name="babyId">
+                  <% babies.forEach(baby => { %>
+                  <% if (!(baby.poops.includes(poop._id))) {%> 
+                  <option value="<%= baby._id %>"><%= baby.name %></option>
                     <% } %>
                   <% }) %>
                   </select>
@@ -36,7 +36,7 @@
                     <p>This Object is already logged under a baby</p>
                   <% } %> 
               <% } else { %>
-                <p>You don't have any babies yet <a href="twins/new" class="btn btn-primary">Add Baby/a></p>
+                <p>You don't have any babies yet <a href="babies/new" class="btn btn-primary">Add Baby/a></p>
               <% } %>
             <% } else {%>
               <p>This Object is not shared</p>
@@ -46,10 +46,10 @@
       </div>
       <% }) %>
 
-      <% function checkAll(twins, poop) { %>
+      <% function checkAll(babies, poop) { %>
         <% let total = 0 %>
-        <%  twins.forEach(twin => {%>
-        <%  if (twin.poops.includes(poop._id)) {%>
+        <%  babies.forEach(baby => {%>
+        <%  if (baby.poops.includes(poop._id)) {%>
           <% total += 1 }%>
           <% %> 
         <% }) %>  

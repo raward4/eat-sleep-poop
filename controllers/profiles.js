@@ -1,6 +1,6 @@
 import { Sleep } from "../models/sleep.js"
 import { Profile } from '../models/profile.js'
-import { Twin } from '../models/twin.js'
+import { Baby } from '../models/baby.js'
 import { Poop } from "../models/poop.js";
 import { Eat } from "../models/eat.js";
 

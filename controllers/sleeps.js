@@ -1,6 +1,6 @@
 import { Sleep } from "../models/sleep.js"
 import { Profile } from '../models/profile.js'
-import { Twin } from '../models/twin.js'
+import { Baby } from '../models/baby.js'
 import { Poop } from "../models/poop.js";
 import { Eat } from "../models/eat.js";
 
@@ -11,10 +11,10 @@ function index(req, res) {
   .populate('createdBy')
   .then(sleeps => {
     if (req.user) {
-    twin.find({createdBy: req.user.profile._id})
-     .then(twins => {
+    baby.find({createdBy: req.user.profile._id})
+     .then(babies => {
       res.render('sleeps/index', {
-        twins,
+        babies,
         sleeps,
         title: "All Feedings"
       })
@@ -36,10 +36,10 @@ function showMySleeps(req, res) {
   Sleep.find({createdBy: req.user.profile._id})
     .populate('createdBy')
     .then(sleeps => {
-      twin.find({createdBy: req.user.profile._id})
-       .then(twins => {
+      baby.find({createdBy: req.user.profile._id})
+       .then(babies => {
         res.render('sleeps/mysleeps', {
-          twins,
+          babies,
           sleeps,
           title: "Feedings"
         })

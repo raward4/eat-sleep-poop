@@ -3,35 +3,35 @@
 
   <main>
     <h1 class="title"><%= title %></h1>
-    <% if (!twins.length) { %> 
+    <% if (!babies.length) { %> 
       <h2>You don't have any babies yet!</h2>
     <% } %>
-    <a href="/twins/new" class="btn btn-primary btn-lg add-btn">Create Baby</a>
-    <% twins.forEach(twin => { %>  
+    <a href="/babies/new" class="btn btn-primary btn-lg add-btn">Create Baby</a>
+    <% babies.forEach(baby => { %>  
       <div class="card text-center w-50">
         <div class="card-body">
-          <% if (twin.imgUrl) { %>
+          <% if (baby.imgUrl) { %>
             <img
-              src="<%= twin.imgUrl %>" 
-              alt="<%= twin.name %> "
+              src="<%= baby.imgUrl %>" 
+              alt="<%= baby.name %> "
             />
           <% } else { %>
             <img
               src="/images/blueb.jpeg" 
-              alt="<%= twin.name %> "
+              alt="<%= baby.name %> "
             >
           <% } %>
-          <h2 class="card-title"><%= twin.name %></h2>
-          <p class="card-text">Created by: <a class="prof-card" href="/profiles/<%= twin.createdBy._id %>"><%= twin.createdBy.name %></a></p>
-          <% if (twin.description) { %> 
-            <p class="card-text"> Description: <br><%= twin.description %></p>
+          <h2 class="card-title"><%= baby.name %></h2>
+          <p class="card-text">Created by: <a class="prof-card" href="/profiles/<%= baby.createdBy._id %>"><%= baby.createdBy.name %></a></p>
+          <% if (baby.description) { %> 
+            <p class="card-text"> Description: <br><%= baby.description %></p>
           <% } %> 
-          <a href="/twins/<%= twin._id %>" class="btn btn-primary look">Look inside</a>
+          <a href="/babies/<%= baby._id %>" class="btn btn-primary look">Look inside</a>
           <div class="card-button-group">
-          <form action="/twins/<%= twin._id %>?_method=DELETE" method="POST">
+          <form action="/babies/<%= baby._id %>?_method=DELETE" method="POST">
             <button type="submit" class="btn btn-danger">Delete</button>
           </form>
-            <a href="/twins/<%= twin._id %>/edit" class="btn btn-success">Edit</a>
+            <a href="/babies/<%= baby._id %>/edit" class="btn btn-success">Edit</a>
           </div>
         </div>
       </div>

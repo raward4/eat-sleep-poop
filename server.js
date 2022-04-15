@@ -20,7 +20,7 @@ import { router as indexRouter } from './routes/index.js'
 import { router as authRouter } from './routes/auth.js'
 import { router as profilesRouter } from './routes/profiles.js'
 import { router as eatsRouter } from './routes/eats.js'
-import { router as twinsRouter } from './routes/twins.js'
+import { router as babiesRouter } from './routes/babies.js'
 import { router as sleepsRouter } from './routes/sleeps.js'
 import { router as poopsRouter } from './routes/poops.js'
 
@@ -69,7 +69,7 @@ app.use('/', indexRouter)
 app.use('/auth', authRouter)
 app.use('/profiles', profilesRouter)
 app.use('/eats', eatsRouter)
-app.use('/twins', twinsRouter)
+app.use('/babies', babiesRouter)
 app.use('/sleeps', sleepsRouter)
 app.use('/poops', poopsRouter)
 

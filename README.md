@@ -10,7 +10,7 @@ Try it now: <https://eat-sleep-poop.herokuapp.com/>
 
 ## Screenshots
 
-##### "Create your twin!" now
+##### "Create your baby!" now
 
 ![1](public/images/shot3.png)
 
@@ -30,6 +30,6 @@ Try it now: <https://eat-sleep-poop.herokuapp.com/>
 
 + Graphic enhancements
 + Improve responsive design
-+ Enhance features of Space Objects and twins
++ Enhance features of Space Objects and babies
 + Implement find, sort and filter functionalities
 + Add interesting astronomical facts

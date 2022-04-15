@@ -2,13 +2,13 @@
 <%- include('../partials/nav') %>
 
 <main>
-  <h1><%= twin.name %> Baby!</h1>
+  <h1><%= baby.name %> Baby!</h1>
   <div>
-    <h4>Created by: <a class="profile-ref" href="/profiles/<%= twin.createdBy._id %>"><%= twin.createdBy.name %></a></h4>
+    <h4>Created by: <a class="profile-ref" href="/profiles/<%= baby.createdBy._id %>"><%= baby.createdBy.name %></a></h4>
   </div>
-    <% if (twin.eats.length) {%> 
+    <% if (baby.eats.length) {%> 
     <h2>Events:</h2>
-    <% twin.eats.forEach(eat => { %>  
+    <% baby.eats.forEach(eat => { %>  
       <div class="card text-center w-50">
         <div class="card-body">
           <% if (eat.imgUrl) { %>
@@ -31,17 +31,17 @@
           <% if (user) {%> 
             <% if (eat.shared) { %> 
               <p>This Space Object is shared</p>
-              <% if (twins.length) { %> 
-                <% if (twins.length !== checkAll(twins, eat)) {%> 
+              <% if (babies.length) { %> 
+                <% if (babies.length !== checkAll(babies, eat)) {%> 
                   <form 
-                   action="/twins/<%= eat._id %>/eats"
+                   action="/babies/<%= eat._id %>/eats"
                   method="post"
                   >
                   <label> Choose your Baby:
-                  <select name="twinId">
-                  <% twins.forEach(twin => { %>
-                  <% if (!(twin.eats.includes(eat._id))) {%> 
-                  <option value="<%= twin._id %>"><%= twin.name %></option>
+                  <select name="babyId">
+                  <% babies.forEach(baby => { %>
+                  <% if (!(baby.eats.includes(eat._id))) {%> 
+                  <option value="<%= baby._id %>"><%= baby.name %></option>
                     <% } %>
                   <% }) %>
                   </select>
@@ -52,15 +52,15 @@
                     <p>Object already logged under a baby...</p>
                   <% } %>
               <% } else { %>
-                <p>You don't have any babies yet <a href="/twins/new" class="btn btn-primary add">Add Baby</a></p>
+                <p>You don't have any babies yet <a href="/babies/new" class="btn btn-primary add">Add Baby</a></p>
               <% } %>
             <% } else {%>
               <p>This has not been shared</p>
             <% } %> 
           <% } %> 
             <% if (user) { %> 
-              <% if (twin.createdBy._id.equals(user?.profile._id)) { %> 
-             <form action="/twins/<%= twin._id %>/eats/<%= eat._id %>?_method=DELETE" method="POST">
+              <% if (baby.createdBy._id.equals(user?.profile._id)) { %> 
+             <form action="/babies/<%= baby._id %>/eats/<%= eat._id %>?_method=DELETE" method="POST">
               <button type="submit" class="btn btn-warning">Remove</button>
               </form>
               <% } %> 
@@ -72,10 +72,10 @@
         <h2>This Baby doesn't have events logged, yet</h2> 
       <% } %>
 
-      <% function checkAll(twins, eat) { %>
+      <% function checkAll(babies, eat) { %>
         <% let total = 0 %>
-        <%  twins.forEach(twin => {%>
-        <%  if (twin.eats.includes(eat._id)) {%>
+        <%  babies.forEach(baby => {%>
+        <%  if (baby.eats.includes(eat._id)) {%>
           <% total += 1 }%>
           <% %> 
         <% }) %>  

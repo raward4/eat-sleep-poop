@@ -17,17 +17,17 @@
           <% if (user) {%> 
             <% if (sleep.shared) { %> 
               <p>This Object is shared</p>
-              <% if (twins.length) { %> 
-                <% if (twins.length !== checkAll(twins, sleep)) {%> 
+              <% if (babies.length) { %> 
+                <% if (babies.length !== checkAll(babies, sleep)) {%> 
                   <form 
-                   action="/twins/<%= sleep._id %>/sleeps"
+                   action="/babies/<%= sleep._id %>/sleeps"
                   method="post"
                   >
                   <label> Choose your Baby:
-                  <select name="twinId">
-                  <% twins.forEach(twin => { %>
-                  <% if (!(twin.sleeps.includes(sleep._id))) {%> 
-                  <option value="<%= twin._id %>"><%= twin.name %></option>
+                  <select name="babyId">
+                  <% babies.forEach(baby => { %>
+                  <% if (!(baby.sleeps.includes(sleep._id))) {%> 
+                  <option value="<%= baby._id %>"><%= baby.name %></option>
                     <% } %>
                   <% }) %>
                   </select>
@@ -38,7 +38,7 @@
                     <p>This object already logged under baby</p>
                   <% } %> 
               <% } else { %>
-                <p>You don't have any Babies yet <a href="/twins/new" class="btn btn-primary">Add Baby</a></p>
+                <p>You don't have any Babies yet <a href="/babies/new" class="btn btn-primary">Add Baby</a></p>
               <% } %>
             <% } else {%>
               <p>This Object is not shared</p>
@@ -48,10 +48,10 @@
       </div>
       <% }) %>
 
-      <% function checkAll(twins, sleep) { %>
+      <% function checkAll(babies, sleep) { %>
         <% let total = 0 %>
-        <%  twins.forEach(twin => {%>
-        <%  if (twin.sleeps.includes(sleep._id)) {%>
+        <%  babies.forEach(baby => {%>
+        <%  if (baby.sleeps.includes(sleep._id)) {%>
           <% total += 1 }%>
           <% %> 
         <% }) %>  

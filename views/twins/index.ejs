@@ -4,28 +4,28 @@
   <main>
     <h1 class="title" ><%= title %></h1>
     <% if (user) { %> 
-      <a href="/twins/new" class="btn btn-primary btn-lg add-btn">Create Baby</a>
+      <a href="/babies/new" class="btn btn-primary btn-lg add-btn">Create Baby</a>
     <% } %>   
-    <% twins.forEach(twin => { %>  
+    <% babies.forEach(baby => { %>  
       <div class="card text-center w-50">
         <div class="card-body">
-          <% if (twin.imgUrl) { %>
+          <% if (baby.imgUrl) { %>
             <img
-              src="<%= twin.imgUrl %>" 
-              alt="<%= twin.name %>"
+              src="<%= baby.imgUrl %>" 
+              alt="<%= baby.name %>"
             />
           <% } else { %>
             <img
-              src="/images/defaultTwin.png" 
+              src="/images/defaultBaby.png" 
               alt="placeholder"
             >
           <% } %>
-          <h2 class="card-title"><%= twin.name %></h2>
-          <p class="card-text">Created by: <a class="prof-card" href="/profiles/<%= twin.createdBy._id %>"><%= twin.createdBy.name %></a></p>
-          <% if (twin.description) { %> 
-            <p class="card-text"> Description: <br><%= twin.description %></p>
+          <h2 class="card-title"><%= baby.name %></h2>
+          <p class="card-text">Created by: <a class="prof-card" href="/profiles/<%= baby.createdBy._id %>"><%= baby.createdBy.name %></a></p>
+          <% if (baby.description) { %> 
+            <p class="card-text"> Description: <br><%= baby.description %></p>
           <% } %> 
-          <a href="/twins/<%= twin._id %>" class="btn btn-primary look">Look inside</a>
+          <a href="/babies/<%= baby._id %>" class="btn btn-primary look">Look inside</a>
         </div>
       </div>
       <% }) %>

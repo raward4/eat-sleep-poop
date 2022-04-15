@@ -4,7 +4,6 @@ import mongoose from "mongoose"
 const Schema = mongoose.Schema
 
 const sleepSchema = new Schema({
-  date: {type: Date},
   amount: {type: Number},
   note: {type: String},
   createdBy: {type: Schema.Types.ObjectId,ref: 'Profile'}

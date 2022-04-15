@@ -5,13 +5,13 @@ const Schema = mongoose.Schema
 
 const eatSchema = new Schema({
   date: {type: Date},
-  type: {type: String, enum: ['Bottle', 'Breast'], defult: 'Bottle'},
-  amount: {type: Number},
-  note: {type: String},
-  createdBy: {type: Schema.Types.ObjectId,ref: 'Profile'}
+  name: {type: String},
+  meal: {type: select, enum: ['Bottle', 'Breast'], defult: 'Bottle'},
+  amount: {type: number},
 }, {
   timestamps: true
-})
+  },
+)
 
 const Eat = mongoose.model('Eat', eatSchema)
 

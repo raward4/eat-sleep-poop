@@ -16,12 +16,12 @@
     <h1><%= profile.name %> </h1>
   <% } %> 
     
-  <% if (profile.twins.length) { %>
+  <% if (profile.babies.length) { %>
       <h2> 
         <% if (isSelf) { %> 
-        You have <a class="profile-ref" href="twins/mytwins"><%= `${profile.twins.length} twins` %></a>!
+        You have <a class="profile-ref" href="babies/babies"><%= `${profile.babies.length} babies` %></a>!
         <% } else { %>
-          <%= `${profile.name} has ${profile.twins.length} twins!` %>
+          <%= `${profile.name} has ${profile.babies.length} babies!` %>
         <% } %>
       </h2>
   <% } else { %>
@@ -43,7 +43,7 @@
   </h2>
 <% } %>
 <div class="main-button-container">
-  <a href="/twins/new" class="btn btn-primary btn-lg">Add Baby</a>
+  <a href="/babies/new" class="btn btn-primary btn-lg">Add Baby</a>
   <a href="/eats/new" class="btn btn-primary btn-lg">Add feeding</a>
   <a href="/sleeps/new" class="btn btn-primary btn-lg">Add nap</a>
   <a href="/poops/new" class="btn btn-primary btn-lg">Add diaper</a>
